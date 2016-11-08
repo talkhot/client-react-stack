@@ -1,37 +1,7 @@
 import React from 'react';
 import WidgetFilter from 'components/widget-filter';
-
-// mock menu
-const menu = [
-  {
-    name: 'Types',
-    options: [
-      {
-        name: 'Light'
-      },
-      {
-        name: 'Dark'
-      },
-      {
-        name: 'Green'
-      }
-    ]
-  },
-  {
-    name: 'Function',
-    options: [
-      {
-        name: 'Nice'
-      },
-      {
-        name: 'Happy'
-      },
-      {
-        name: 'Mean'
-      }
-    ]
-  }
-];
+// mock data
+import menu from 'data/menu';
 
 const WidgetList = () => {
   return (
