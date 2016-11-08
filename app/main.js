@@ -6,9 +6,6 @@ import { Router, browserHistory } from 'react-router';
 // redux
 import { ApolloProvider } from 'react-apollo';
 import apolloProps from './flux/apollo-props';
-// intl
-import { IntlProvider } from 'react-intl';
-import intlLoader from 'utils/intl-loader';
 // styles
 import { Provider as FelaProvider } from 'react-fela';
 import { createRenderer } from 'fela';
@@ -31,14 +28,6 @@ if (NODE_ENV === 'development') { debug.enable('dev,koa'); }
   // Needed for onTouchTap
   injectTapEventPlugin();
 
-  // load the intl-polyfill if needed
-  const locale = 'en';
-  await intlLoader(locale);
-
-  const intlProps = {
-    locale
-  };
-
   const felaProps = {
     mountNode: document.getElementById('stylesheet'),
     renderer: createRenderer()
@@ -51,13 +40,11 @@ if (NODE_ENV === 'development') { debug.enable('dev,koa'); }
 
   const element = (
     <ApolloProvider { ...apolloProps }>
-      <IntlProvider { ...intlProps }>
-        <FelaProvider { ...felaProps }>
-          <MuiThemeProvider>
-            <Router { ...routerProps } />
-          </MuiThemeProvider>
-        </FelaProvider>
-      </IntlProvider>
+      <FelaProvider { ...felaProps }>
+        <MuiThemeProvider>
+          <Router { ...routerProps } />
+        </MuiThemeProvider>
+      </FelaProvider>
     </ApolloProvider>
   );
 
