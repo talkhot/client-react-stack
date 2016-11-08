@@ -200,15 +200,23 @@ class WidgetFilter extends Component {
     const dynamicStyles = {
       top: {
         transform: `translate3d(${scrollToTop}px, 0, 0)`,
-        transition: animate && '0.2s ease-in-out', // TODO: prefix
+        transition: animate && '0.2s ease-in-out',
         whiteSpace: 'nowrap',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        // prefix
+        MsTransform: `translate3d(${scrollToTop}px, 0, 0)`,
+        WebkitTransform: `translate3d(${scrollToTop}px, 0, 0)`,
+        WebkitTransition: animate && '0.2s ease-in-out'
       },
       bottom: {
         transform: `translate3d(${scrollToBottom}px, 0, 0)`,
-        transition: animate && '0.2s ease-in-out', // TODO: prefix
+        transition: animate && '0.2s ease-in-out',
         whiteSpace: 'nowrap',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        // prefix
+        MsTransform: `translate3d(${scrollToBottom}px, 0, 0)`,
+        WebkitTransform: `translate3d(${scrollToBottom}px, 0, 0)`,
+        WebkitTransition: animate && '0.2s ease-in-out'
       },
       centerArrowUp: {
         width: 0,
