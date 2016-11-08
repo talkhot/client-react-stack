@@ -111,20 +111,20 @@ class WidgetFilter extends Component {
   }
 
   _getBottomItems = ({ items = [] }) => {
-    if (!items || !items.length) return <span />;
-
-    return items
-      .map((item, i) =>
-        <Hammer
-          key={ i }
-          onTap={ () => this._handleBottomSelect(i, item.name) }>
-          <div
-            ref={ `item${i}` }
-            className={ `${css(prefixStyles.option)}` }
-            style={ styles.option }
-            children={ item.name } />
-        </Hammer>
-    );
+    if (items && items.length) {
+      return items
+        .map((item, i) =>
+          <Hammer
+            key={ i }
+            onTap={ () => this._handleBottomSelect(i, item.name) }>
+            <div
+              ref={ `item${i}` }
+              className={ `${css(prefixStyles.option)}` }
+              style={ styles.option }
+              children={ item.name } />
+          </Hammer>
+      );
+    }
   }
 
   // find the ref index of out menu item we swipe closed to
@@ -139,12 +139,12 @@ class WidgetFilter extends Component {
       return Math.round(getDistanceX(this.refs[ref], containerNode));
     });
 
-    // get the ref of the distance we moved closed to
-    const closed = Math.min.apply(null, distances);
-    const key = distances.indexOf(closed);
-    const closedItemRef = items[key];
+    // get the ref of the distance we moved closest to
+    const closest = Math.min.apply(null, distances);
+    const key = distances.indexOf(closest);
+    const closestItemRef = items[key];
     // get back the index item/option + i
-    const index = closedItemRef.replace(refName, '');
+    const index = closestItemRef.replace(refName, '');
 
     return index;
   }
