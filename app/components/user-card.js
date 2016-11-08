@@ -20,7 +20,7 @@ const UserCardContainer = ({ error, loading, ...rest }) => {
 
 UserCardContainer.propTypes = {
   loading: PropTypes.bool,
-  error: PropTypes.bool
+  error: PropTypes.object
 };
 
 // component
