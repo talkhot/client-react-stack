@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { createComponent } from 'react-fela';
 
-function Center(props) {
+function Center({ children }) {
   const wrapper = () => ({
     display: 'table',
     position: 'relative',
@@ -23,7 +23,7 @@ function Center(props) {
   return (
     <Wrapper>
       <Container>
-        { props.children }
+        { children }
       </Container>
     </Wrapper>
   );

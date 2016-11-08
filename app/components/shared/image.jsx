@@ -7,7 +7,11 @@ class Image extends Component {
   };
 
   _handleImageLoaded() {
+    const { onImgLoaded } = this.props;
+
     this.setState({ imageStatus: 201 });
+
+    onImgLoaded && onImgLoaded();
   }
 
   _handleImageErrored() {
@@ -60,7 +64,8 @@ Image.propTypes = {
   imgUrl: PropTypes.string.isRequired,
   height: PropTypes.oneOfType([ PropTypes.string, PropTypes.number ]),
   // callbacks
-  onTouchTap: PropTypes.func
+  onTouchTap: PropTypes.func,
+  onImgLoaded: PropTypes.func
 };
 
 Image.defaultProps = {
