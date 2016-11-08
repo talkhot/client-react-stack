@@ -45,6 +45,7 @@
     "quotes": [2, "single", "avoid-escape"],
     "semi": 1,
     "jsx-quotes": [2, "prefer-single"],
+    "object-shorthand": 0,
     "comma-dangle": [1, "never"],
     "consistent-return": 0,
     "indent": [1, 2, {"SwitchCase": 1}],
