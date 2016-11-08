@@ -41,10 +41,12 @@
     "react/jsx-no-bind": 1,
     "react/prefer-stateless-function": 1,
 
+    "array-callback-return": 0,
     "quotes": [2, "single", "avoid-escape"],
     "semi": 1,
     "jsx-quotes": [2, "prefer-single"],
     "comma-dangle": [1, "never"],
+    "consistent-return": 0,
     "indent": [1, 2, {"SwitchCase": 1}],
     "object-curly-spacing": [2, "always"],
     "array-bracket-spacing": [2, "always"],

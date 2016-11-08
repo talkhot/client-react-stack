@@ -7,6 +7,7 @@ export default (
     <Route path='/' component={ require('./components/app') }>
       <IndexRoute component={ require('./containers/landing-page') } />
       // urls
+      <Route path='widget'component={ require('./containers/widget-page') } />
       <Route path='fela'component={ require('./containers/fela-page') } />
       <Route path='graphql'component={ require('./containers/graphql-page') } />
     </Route>

@@ -38,6 +38,10 @@ class Header extends Component {
               onTouchTap={ ::this._handleMove.bind(this, '/') } />
             <MenuItem
               style={ { WebkitAppearance: 'none' } }
+              primaryText='widget'
+              onTouchTap={ ::this._handleMove.bind(this, '/widget') } />
+            <MenuItem
+              style={ { WebkitAppearance: 'none' } }
               primaryText='fela'
               onTouchTap={ ::this._handleMove.bind(this, '/fela') } />
             <MenuItem
