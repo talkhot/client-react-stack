@@ -1,8 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { createComponent } from 'react-fela';
+import { StyleSheet, css } from 'aphrodite/no-important';
 import { connect } from 'react-redux';
 import { setPageTitle } from 'flux/actions/helmet';
 
+import Image from 'components/shared/image';
 import Center from 'components/shared/center';
 
 class LandingPage extends Component {
@@ -16,38 +17,41 @@ class LandingPage extends Component {
   }
 
   render() {
-    const wrapper = () => ({
-      flex: '1 1 auto',
-      display: 'flex'
-    });
-
-    const container = () => ({
-      display: 'flex',
-      flexFlow: 'wrap',
-      margin: '0 auto',
-      width: '100%',
-      alignItems: 'center',
-      alignContent: 'center',
-      justifyContent: 'flex-start',
-      background: 'url(https://unsplash.it/916/708/?random) no-repeat center center fixed',
-      backgroundSize: 'cover',
-      // font
-      color: '#fff'
-    });
-
-    const Wrapper = createComponent(wrapper, 'div');
-    const Container = createComponent(container, 'div');
-
     return (
-      <Wrapper>
-        <Container>
+      <div className={ css(styles.wrapper) }>
+        <div className={ css(styles.container) }>
+          <div className={ css(styles.imageCover) }>
+            <Image imgUrl={ 'https://s18.postimg.org/g2bhif709/tempelhof.jpg' } />
+          </div>
           <Center>
             <h4>Landing Page</h4>
           </Center>
-        </Container>
-      </Wrapper>
+        </div>
+      </div>
     );
   }
 }
 
+const styles = StyleSheet.create({
+  wrapper: {
+    flex: '1 1 auto',
+    display: 'flex',
+    width: '100%'
+  },
+  container: {
+    position: 'relative',
+    width: '100%',
+    alignItems: 'center',
+    alignContent: 'center',
+    // font
+    color: '#fff'
+  },
+  imageCover: {
+    position: 'absolute',
+    width: '100%',
+    height: '100%'
+  }
+});
+
 export default connect()(LandingPage);
+
