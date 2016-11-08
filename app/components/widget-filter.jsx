@@ -63,7 +63,7 @@ class WidgetFilter extends Component {
   }
 
   _getCenterScrollPosition = (targetRef) => {
-    // calculate where we should sroll to
+    // calculate where we should scroll to
     const wrapperRect = this.refs.wrapper.getBoundingClientRect();
     const targetItemRect = this.refs[targetRef].getBoundingClientRect();
     const targetItemNode = ReactDOM.findDOMNode(this.refs[targetRef]);
