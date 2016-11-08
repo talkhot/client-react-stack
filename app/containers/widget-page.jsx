@@ -7,6 +7,9 @@ import { setPageTitle } from 'flux/actions/helmet';
 // components
 import { WindowResizeListener } from 'react-window-resize-listener';
 import WidgetList from 'components/widget-list';
+// mock data
+import menu from 'data/menu';
+import menuItems from 'data/menu-items';
 
 class Widget extends Component {
 
@@ -112,7 +115,7 @@ class Widget extends Component {
           <div className={ css(styles.helpPane) } /> }
         <div className={ css(styles.leftPane) }>
           <div className={ css(styles.content) }>
-            <WidgetList />
+            <WidgetList menu={ menu } menuItems={ menuItems } />
           </div>
         </div>
         { !mobileView &&

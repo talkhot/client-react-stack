@@ -27,19 +27,19 @@ class WidgetFilter extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { dispatch, currentSelected } = this.props;
+    const { dispatch, filterSelected } = this.props;
 
-    if (prevProps.currentSelected.FILTER !== currentSelected.FILTER) {
+    if (prevProps.filterSelected.FILTER !== filterSelected.FILTER) {
       this._positionLayout();
-      dispatch(setSelectedOption(currentSelected.OPTION));
+      dispatch(setSelectedOption(filterSelected.OPTION));
     }
   }
 
   _positionLayout = () => {
-    const { currentSelected } = this.props;
+    const { filterSelected } = this.props;
 
-    this._centerItem(`option${currentSelected.FILTER}`, 'top');
-    this._centerItem(`item${currentSelected.OPTION}`, 'bottom');
+    this._centerItem(`option${filterSelected.FILTER}`, 'top');
+    this._centerItem(`item${filterSelected.OPTION}`, 'bottom');
   }
 
   _centerItem = (targetRef, position) => {
@@ -188,7 +188,7 @@ class WidgetFilter extends Component {
 
   render() {
     const { scrollToBottom, scrollToTop, animate } = this.state;
-    const { menu, currentSelected } = this.props;
+    const { menu, filterSelected } = this.props;
 
     const prefixDynamicStyles = StyleSheet.create({
       wrapper: {
@@ -257,7 +257,7 @@ class WidgetFilter extends Component {
           onPanEnd={ this._handleStopBottom }>
           <div style={ styles.contain }>
             <div style={ dynamicStyles.bottom }>
-              { this._getBottomItems({ items: menu[currentSelected.FILTER].options || [] }) }
+              { this._getBottomItems({ items: menu[filterSelected.FILTER].options || [] }) }
             </div>
           </div>
         </Hammer>
@@ -271,7 +271,7 @@ WidgetFilter.propTypes = {
   // info
   menu: PropTypes.array.isRequired,
   // redux local state
-  currentSelected: PropTypes.object.isRequired,
+  filterSelected: PropTypes.object.isRequired,
   // redux
   dispatch: PropTypes.func.isRequired,
   // callbacks
@@ -335,8 +335,4 @@ const styles = {
   }
 };
 
-export default connect(
-  (state) => ({
-    currentSelected: state.widgetFilterSelected
-  })
-)(WidgetFilter);
+export default connect()(WidgetFilter);

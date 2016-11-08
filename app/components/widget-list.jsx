@@ -1,22 +1,45 @@
-import React from 'react';
-import WidgetFilter from 'components/widget-filter';
-// mock data
-import menu from 'data/menu';
+import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
 
-const WidgetList = () => {
+import WidgetFilter from 'components/widget-filter';
+import WidgetCard from 'components/widget-card';
+
+const WidgetList = ({ menu, menuItems, filterSelected }) => {
+  const _filterItems = (item) => {
+    const filter = menu[filterSelected.FILTER];
+    const option = filter.options[filterSelected.OPTION];
+
+    // very simple filter for testing
+    if (filter.name === 'Types') {
+      return item.type === option.name;
+    }
+
+    if (filter.name === 'Function') {
+      return item.func === option.name;
+    }
+
+    return false;
+  };
+
   return (
     <div>
-      <WidgetFilter menu={ menu } />
-      { /* add data to filter trough */ }
-      <div style={ style }>WIP: test of a menu. Drag menu items. Todo: add data to filter trough</div>
+      <WidgetFilter menu={ menu } filterSelected={ filterSelected } />
+      { menuItems && menuItems.length &&
+        menuItems.filter(_filterItems).map((item, i) =>
+          <WidgetCard key={ i } name={ `${item.func} / ${item.type}` } />) }
     </div>
   );
 };
 
-const style = {
-  fontSize: 12,
-  textAlign: 'center',
-  padding: 24
+WidgetList.propTypes = {
+  menu: PropTypes.array.isRequired,
+  menuItems: PropTypes.array.isRequired,
+  // redux local state
+  filterSelected: PropTypes.object.isRequired
 };
 
-export default WidgetList;
+export default connect(
+  (state) => ({
+    filterSelected: state.widgetFilterSelected
+  })
+)(WidgetList);
