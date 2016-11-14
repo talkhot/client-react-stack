@@ -120,8 +120,7 @@ class WidgetFilter extends Component {
             key={ i }>
             <WidgetFilterItem
               name={ item.name }
-              onTouchTap={ () => this._handleBottomSelect(i, name) }
-              onPress={ () => this._handleBottomToggle(i, item) } />
+              onTouchTap={ () => this._handleBottomSelect(i, name) } />
           </span>
       );
     }
