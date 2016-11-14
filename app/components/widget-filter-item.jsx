@@ -25,9 +25,9 @@ class WidgetFilterItem extends Component {
         onPress={ onPress }>
         <span
           className={ prefixStyles.option }
-          style={ styles.option }>
+          style={ styles.option }
+          onTouchTap={ onTouchTap }>
           <div
-            onTouchTap={ onTouchTap }
             className={ css(activeClass.o) }
             children={ name } />
         </span>
