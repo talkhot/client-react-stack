@@ -9,6 +9,8 @@ import { WindowResizeListener } from 'react-window-resize-listener';
 // utils
 import { getCenterArrayIndex } from 'utils/array';
 import { getDistanceX } from 'utils/get-distance';
+// components
+import WidgetFilterItem from 'components/widget-filter-item';
 
 // NOTE: we need inline styles couse we do calculations with them
 class WidgetFilter extends Component {
@@ -98,13 +100,13 @@ class WidgetFilter extends Component {
     if (items && items.length) {
       return items
         .map((item, i) =>
-          <div
-            key={ i }
+          <span
             ref={ `option${i}` }
-            className={ css(prefixStyles.option) }
-            style={ styles.option }
-            onTouchTap={ () => this._handleTopSelect(i) }
-            children={ item.name } />
+            key={ i }>
+            <WidgetFilterItem
+              name={ item.name }
+              onTouchTap={ () => this._handleTopSelect(i) } />
+          </span>
         );
     }
   }
@@ -113,15 +115,14 @@ class WidgetFilter extends Component {
     if (items && items.length) {
       return items
         .map((item, i) =>
-          <Hammer
-            key={ i }
-            onTap={ () => this._handleBottomSelect(i, item.name) }>
-            <div
-              ref={ `item${i}` }
-              className={ `${css(prefixStyles.option)}` }
-              style={ styles.option }
-              children={ item.name } />
-          </Hammer>
+          <span
+            ref={ `item${i}` }
+            key={ i }>
+            <WidgetFilterItem
+              name={ item.name }
+              onTouchTap={ () => this._handleBottomSelect(i, name) }
+              onPress={ () => this._handleBottomToggle(i, item) } />
+          </span>
       );
     }
   }
@@ -282,11 +283,6 @@ WidgetFilter.defaultProps = {
 };
 
 const prefixStyles = StyleSheet.create({
-  option: {
-    userSelect: 'none',
-    // https://developer.mozilla.org/en/docs/Web/CSS/-webkit-tap-highlight-color
-    '-webkit-tap-highlight-color': 'rgba(0,0,0,0)'
-  },
   fadeEdges: {
     ':before': {
       content: '""',
@@ -325,12 +321,6 @@ const styles = {
   contain: {
     width: '100%',
     padding: '1px 0 0 0'
-  },
-  option: {
-    padding: '4px 0px 1px 0px',
-    margin: '0px 12px 3px 12px',
-    display: 'inline-block',
-    fontWeight: 'bold'
   }
 };
 
