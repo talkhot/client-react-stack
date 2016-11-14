@@ -21,17 +21,18 @@ class WidgetFilter extends Component {
   };
 
   componentDidMount() {
-    // TODO: without browser sync we dont need the delay
-    // to have the menu items in right position
+    // TODO: without browser sync we dont need the timeout
+    // sets the DOM position of the menu
     setTimeout(() => { this._positionLayout(); }, 300);
   }
 
   componentDidUpdate(prevProps) {
-    const { dispatch, filterSelected } = this.props;
+    const { filterSelected } = this.props;
 
-    if (prevProps.filterSelected.FILTER !== filterSelected.FILTER) {
+    // change DOM position of options on updated props
+    if (prevProps.filterSelected.FILTER !== filterSelected.FILTER ||
+      prevProps.filterSelected.OPTION !== filterSelected.OPTION) {
       this._positionLayout();
-      dispatch(setSelectedOption(filterSelected.OPTION));
     }
   }
 
@@ -78,21 +79,19 @@ class WidgetFilter extends Component {
 
   _handleTopSelect = (index) => {
     const { dispatch, menu } = this.props;
-    const targetRef = `option${index}`;
 
     // this is the position our bottom menu will switch to
     const centerIndex = getCenterArrayIndex({ length: menu[index].options.length });
 
+    // set the selected option in redux state
     dispatch(setSelectedFilterAndOption(index, centerIndex));
-    this._centerItem(targetRef, 'top');
   }
 
   _handleBottomSelect = (index) => {
     const { dispatch } = this.props;
-    const targetRef = `item${index}`;
 
+    // set the selected option in redux state
     dispatch(setSelectedOption(index));
-    this._centerItem(targetRef, 'bottom');
   }
 
   _getTopItems = ({ items = [] }) => {
