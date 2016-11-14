@@ -24,7 +24,7 @@ class WidgetFilterItem extends Component {
       <Hammer
         onPress={ onPress }>
         <span
-          className={ prefixStyles.option }
+          className={ css(prefixStyles.option) }
           style={ styles.option }
           onTouchTap={ onTouchTap }>
           <div
