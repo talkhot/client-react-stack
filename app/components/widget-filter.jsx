@@ -148,7 +148,7 @@ class WidgetFilter extends Component {
     return index;
   }
 
-  // Called when we are dragging
+  // called when we are dragging
   _handleDragBottom = (e) => {
     this.setState({
       scrollToBottom: this.state.lastScrollPosBottom + e.deltaX,
@@ -156,6 +156,7 @@ class WidgetFilter extends Component {
     });
   }
 
+  // called when we stopped dragging
   _handleStopBottom = (e) => {
     const refIndex = this._getClosestRef({ refName: 'item' });
 
@@ -163,6 +164,9 @@ class WidgetFilter extends Component {
       lastScrollPosBottom: this.state.lastScrollPosBottom + e.deltaX,
       animate: true
     });
+
+    // after drag we could be same item index but out of position
+    this._centerItem(`item${refIndex}`, 'bottom');
 
     this._handleBottomSelect(refIndex);
   }
@@ -181,6 +185,9 @@ class WidgetFilter extends Component {
       lastScrollPosTop: this.state.lastScrollPosTop + e.deltaX,
       animate: true
     });
+
+    // after drag we could be same item index but out of position
+    this._centerItem(`option${refIndex}`, 'top');
 
     this._handleTopSelect(refIndex);
   }
