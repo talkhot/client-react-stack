@@ -143,7 +143,7 @@ class WidgetFilter extends Component {
     const key = distances.indexOf(closest);
     const closestItemRef = items[key];
     // get back the index item/option + i
-    const index = closestItemRef.replace(refName, '');
+    const index = Number(closestItemRef.replace(refName, ''));
 
     return index;
   }
