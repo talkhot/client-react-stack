@@ -47,6 +47,7 @@ class Widget extends Component {
         // these keep the widget always 100% screen
         position: 'absolute',
         overflowY: 'scroll',
+        overflowX: 'hidden',
         width: '100%'
       },
       wrapper: {
