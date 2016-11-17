@@ -8,13 +8,12 @@ import { getCenterArrayIndex } from 'utils/array';
 // components
 import WidgetFilterRow from 'components/widget-filter-row';
 
-// NOTE: we need inline styles couse we do calculations with them
 function WidgetFilter({ dispatch, menu, filterSelected }) {
   const _handleTopSelect = (index) => {
     // this is the position our bottom menu will switch to
     const centerIndex = getCenterArrayIndex({ length: menu[index].options.length });
 
-    // set the selected option in redux state
+    // set the selected option and filter in redux state
     dispatch(setSelectedFilterAndOption(index, centerIndex));
   };
 
@@ -26,13 +25,14 @@ function WidgetFilter({ dispatch, menu, filterSelected }) {
   // styles
   const prefixDynamicStyles = StyleSheet.create({
     wrapper: {
+      // use dynamic theme colors/font
       fontSize: 12,
       backgroundColor: '#d8d8d8'
     }
   });
 
   const dynamicStyles = {
-    // use theme colors
+    // use dynamic theme colors
     centerArrowUp: {
       width: 0,
       height: 0,
@@ -52,9 +52,7 @@ function WidgetFilter({ dispatch, menu, filterSelected }) {
   };
 
   return (
-    <div
-      style={ styles.wrapper }
-      className={ `${css(prefixStyles.fadeEdges)} ${css(prefixDynamicStyles.wrapper)}` }>
+    <div className={ `${css(prefixStyles.fadeEdges)} ${css(prefixDynamicStyles.wrapper)}` }>
       <div style={ dynamicStyles.centerArrowDown } />
       <WidgetFilterRow
         items={ menu || [] }
@@ -106,13 +104,5 @@ const prefixStyles = StyleSheet.create({
     }
   }
 });
-
-const styles = {
-  wrapper: {
-    width: '100%', // DONT REMOVE NEEDED FOR RIGHT CALCULATIONS
-    minWidth: '100%',
-    position: 'relative'
-  }
-};
 
 export default connect()(WidgetFilter);
