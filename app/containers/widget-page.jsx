@@ -131,7 +131,6 @@ Widget.propTypes = {
   mobileLayoutPageWidth: PropTypes.number.isRequired,
   // redux
   dispatch: PropTypes.func.isRequired
-  // redux local state
 };
 
 Widget.defaultProps = {
