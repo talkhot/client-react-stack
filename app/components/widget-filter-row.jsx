@@ -11,8 +11,8 @@ import WidgetFilterItem from 'components/widget-filter-item';
 class WidgetFilterRow extends Component {
 
   state = {
-    scrollToPosition: 0,
-    lastScrollPosition: 0,
+    scrollPosition: 0,
+    prevScrollPosition: 0,
     animate: true
   };
 
@@ -43,8 +43,8 @@ class WidgetFilterRow extends Component {
     const newScrollPosition = this._getCenterScrollPosition(targetRef);
 
     this.setState({
-      scrollToPosition: newScrollPosition,
-      lastScrollPosition: newScrollPosition
+      scrollPosition: newScrollPosition,
+      prevScrollPosition: newScrollPosition
     });
   }
 
@@ -87,7 +87,7 @@ class WidgetFilterRow extends Component {
   // called when we are dragging
   _handleDrag = (e) => {
     this.setState({
-      scrollToPosition: this.state.lastScrollPosition + e.deltaX,
+      scrollPosition: this.state.prevScrollPosition + e.deltaX,
       animate: false
     });
   }
@@ -98,7 +98,7 @@ class WidgetFilterRow extends Component {
     const refIndex = this._getClosestRef({ refName: 'item' });
 
     this.setState({
-      lastScrollPosition: this.state.lastScrollPosition + e.deltaX,
+      prevScrollPosition: this.state.prevScrollPosition + e.deltaX,
       animate: true
     });
 
@@ -126,18 +126,18 @@ class WidgetFilterRow extends Component {
   }
 
   render() {
-    const { scrollToPosition, animate } = this.state;
+    const { scrollPosition, animate } = this.state;
     const { items } = this.props;
 
     const dynamicStyles = {
       position: {
-        transform: `translate3d(${scrollToPosition}px, 0, 0)`,
+        transform: `translate3d(${scrollPosition}px, 0, 0)`,
         transition: animate && '0.2s ease-in-out',
         whiteSpace: 'nowrap',
         cursor: 'pointer',
         // prefix
-        MsTransform: `translate3d(${scrollToPosition}px, 0, 0)`,
-        WebkitTransform: `translate3d(${scrollToPosition}px, 0, 0)`,
+        MsTransform: `translate3d(${scrollPosition}px, 0, 0)`,
+        WebkitTransform: `translate3d(${scrollPosition}px, 0, 0)`,
         WebkitTransition: animate && '0.2s ease-in-out'
       }
     };
