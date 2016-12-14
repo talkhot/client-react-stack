@@ -1,33 +1,31 @@
 import React, { PropTypes } from 'react';
-import { createComponent } from 'react-fela';
+import { StyleSheet, css } from 'aphrodite/no-important';
 
 function Center({ children }) {
-  const wrapper = () => ({
+  return (
+    <div className={ css(styles.wrapper) }>
+      <div className={ css(styles.container) }>
+        { children }
+      </div>
+    </div>
+  );
+}
+
+const styles = StyleSheet.create({
+  wrapper: {
     display: 'table',
     position: 'relative',
     width: '100%',
     height: '100%',
     textAlign: 'center'
-  });
-
-  const container = () => ({
+  },
+  container: {
     display: 'table-cell',
     width: '100%',
     height: '100%',
     verticalAlign: 'middle'
-  });
-
-  const Wrapper = createComponent(wrapper, 'div');
-  const Container = createComponent(container, 'div');
-
-  return (
-    <Wrapper>
-      <Container>
-        { children }
-      </Container>
-    </Wrapper>
-  );
-}
+  }
+});
 
 Center.propTypes = {
   children: PropTypes.node
