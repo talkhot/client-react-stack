@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 // redux
 import { ApolloProvider } from 'react-apollo';
-import apolloProps from './flux/apollo-props';
+import apolloProps from 'flux/apollo-props';
 // styles
 import { Provider as FelaProvider } from 'react-fela';
 import { createRenderer } from 'fela';
